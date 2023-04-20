@@ -1,0 +1,94 @@
+[
+    { "msgs": ["Hi"], "msgInputSpeed": 60 },
+    { "msgs": ["Kamu Apa Kabar ??"], "msgInputSpeed": 60 },
+    {
+        "msgs": ["Aku Kangen Kamu Loh", "Kamu sehat kan ??，kamu lagi ga bdmd kan??"],
+        "msgInputSpeed": 60
+    },
+    {
+        "msgs": [
+            "kalo kamu lagi ga bdmd, aku mau cerita nih, kamu mau dengerin ga??"
+        ],
+        "msgInputSpeed": 60,
+        "triggerNextAction": {
+            "type": "userInput",
+            "options": {
+                "resolveKeyTexts": ["boleh","iya","mau","brother"],
+                "rejectKeyTexts": ["gamau", "gak mau dengerin"],
+                "rejectHitTexts": ["bales mau klo mau", "dibilang bales mau klo mau， kalo gamau ya bales gamau", "klo gamau yaudah aku ga maksa kok hehe"]
+            }
+        }
+    },
+    { "msgs": ["oke lanjut.. "], "msgInputSpeed": 40 },
+    { "msgs": ["memiliki seseorang seperti mu, bukanlah hal yang buruk"], "msgInputSpeed": 40 },
+    { "msgs": ["juga bukanlah hal yang baik, tentunya wkwkwk"], "msgInputSpeed": 60 },
+    { "msgs": ["karena denganmu aku menemukan sisi baik buruk nya tentang pertemanan"], "msgInputSpeed": 60 },
+    { "msgs": ["belajar memahami bahasa teman kita sendiri"], "msgInputSpeed": 60 },
+    { "msgs": ["tentang bahasa memberi kabar tanpa harus diminta"], "msgInputSpeed": 60 },
+    { "msgs": ["tentang bahasa sedih bahagia nya kita.."], "msgInputSpeed": 60 },
+    { "msgs": ["dan.."], "msgInputSpeed": 60 },
+    { "msgs": ["bahasa monyet tentunya wkwkw.."], "msgInputSpeed": 60 },
+    { "msgs": ["coba liat ini.."], "msgInputSpeed": 60 },
+    {
+        "msgs": ["<vlog src='options/demo/vlogs/monyet.mp4'/>"],
+        "triggerNextAction": { "type": "componentClose" }
+    },
+    { "msgs": ["hehe.. ingat ga?? konyol sekali ya kita.. tapi itulah kita wkwkwk"], "msgInputSpeed": 60 },
+    { "msgs": ["sekarang lagi nyantai ga??"], "msgInputSpeed": 60 },
+    { "msgs": ["klo lagi ngga santai, mending close dulu.. "], "msgInputSpeed": 60 },
+    {
+        "msgs": [
+            "gimana?? lagi santai ga??"
+        ],
+        "msgInputSpeed": 60,
+        "triggerNextAction": {
+            "type": "userInput",
+            "options": {
+                "resolveKeyTexts": ["santai"],
+                "rejectKeyTexts": ["ngga"],
+                "rejectHitTexts": ["aku tanya sekali lagi.. santai ga??"]
+            }
+        }
+    },
+    {
+        "msgs": [
+            "kalau santai, bales lanjut klo mau lanjut"
+        ],
+        "msgInputSpeed": 60,
+        "triggerNextAction": {
+            "type": "userInput",
+            "options": {
+                "resolveKeyTexts": ["lanjut"],
+                "rejectKeyTexts": ["ngga"],
+                "rejectHitTexts": ["yaudah klo gamau keluar aja"]
+            }
+        }
+    },
+    { "msgs": ["<img src='options/demo/imgs/radha.jpg'/>"] },
+    { "msgs": ["buat kenang kenangan aja wkwkwk.."], "msgInputSpeed": 60 },
+    { "msgs": ["simpen ya..."], "msgInputSpeed": 60 },
+    {
+        "msgs": [
+            "lanjut ga ni, klo lanjut aku mau ngirim pesan wasiat dari prabu siliwangi, kamu mau tau ga??"
+        ],
+        "msgInputSpeed": 60,
+        "triggerNextAction": {
+            "type": "userInput",
+            "options": {
+                "resolveKeyTexts": ["boleh","iya","mau","brother"],
+                "rejectKeyTexts": ["gamau", "gak mau tau"],
+                "rejectHitTexts": ["bales mau klo mau", "dibilang bales mau klo mau， kalo gamau ya bales gamau", "klo gamau yaudah aku ga maksa kok hehe"]
+            }
+        }
+    },
+    {
+        "msgs": ["<letter src='options/demo/letters/kata.json'/>"],
+        "triggerNextAction": { "type": "componentClose" }
+    },
+    { "msgs": ["udah.. itu doang.."], "msgInputSpeed": 60 },
+    { "msgs": ["dah jangan nangis.."], "msgInputSpeed": 60 },
+    { "msgs": ["nanti ultraman ikut nangis loh"], "msgInputSpeed": 60 },
+    { "msgs": ["klo ultraman sedih, gada yang melindungi dunia, gada yang melindungi kamu juga"], "msgInputSpeed": 60 },
+    { "msgs": ["cukup video sekian ini kali, sampai kembali jumpa di channel youtube guys ya.."], "msgInputSpeed": 60 },
+    { "msgs": ["wassalamualaikum wr wb (emote love biru)"], "msgInputSpeed": 60 }
+]
