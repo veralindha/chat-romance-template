@@ -1,187 +1,163 @@
-# 这是什么东西？
+# Apa ini?
 
-> 参考来自 https://github.com/wongjohn/for-my-love 并做了部分改造
+> Referensi dari https://github.com/wongjohn/for-my-love dengan beberapa modifikasi
 >
 
-以聊天交互的方式向女朋友表达想说的话，支持便捷的内容配置，急速替换为自己想要的内容，点击下方链接预览效果。
+Ungkapkan apa yang ingin Anda katakan kepada pacar Anda dalam bentuk interaksi obrolan, dukung konfigurasi konten yang nyaman, ganti dengan cepat dengan konten yang Anda inginkan, klik tautan di bawah untuk melihat pratinjau efeknya.
 
-- 国内用户访问：[https://sg.chenjianhui.site/girlfriend-gift-collection/chat-want-to-say/](https://sg.chenjianhui.site/girlfriend-gift-collection/chat-want-to-say/)
-- Github Pages: [https://calebman.github.io/girlfriend-gift-collection/chat-want-to-say/](https://calebman.github.io/girlfriend-gift-collection/chat-want-to-say/)
-# 如何修改为自己的内容
+- Akses pengguna domestik: [https://sg.chenjianhui.site/girlfriend-gift-collection/chat-want-to-say/](https://sg.chenjianhui.site/girlfriend-gift-collection/chat- ingin bilang/)
+- Halaman Github: [https://calebman.github.io/girlfriend-gift-collection/chat-want-to-say/](https://calebman.github.io/girlfriend-gift-collection/chat-want -untuk-mengatakan/)
+# Cara memodifikasi ke konten Anda sendiri
 
-### 一. 修改配置文件
+### 1. Ubah file konfigurasi
 
-> 项目 chat-want-to-say 根目录中的 .env.* 为环境配置文件，默认打包使用 .env.production 配置，配置内容如下所示：
-> 
-
-| 配置项                 | 含义                 | 备注                                                   |
-| ---------------------- | -------------------- | ------------------------------------------------------ |
-| VITE_APP_TITLE         | 聊天框标题           | 可填入如“与XXX正在聊天”等内容                          |
-| VITE_BASE_URL          | 网页基础路径         | 如果部署在服务器的二级路径则需要填写                   |
-| VITE_CHAT_OPTIONS_PATH | 聊天内容配置（重要） | 填入内容对应的 json 文件地址，寻找 public 目录下的文件 |
-
-参考 .env.development 一个完整的配置文件如下所示：
-
-```properties
-VITE_APP_TITLE=与XXX聊天中
-VITE_BASE_URL=chat-interactive-demo/
-VITE_CHAT_OPTIONS_PATH=options/demo/chat.json
-```
-
-### 二. 完善聊天内容
-
-聊天内容配置由一个 json 数组构成，数组内每一项对应一段聊天内容，其支持的配置信息如下所示：
-
-| 配置项                 | 含义                 | 类型               | 备注                                                   |
-| ---------------------- | -------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| msgs         | 聊天内容           | 数组         |          支持**文本/图片/信件/VLog**等形式内容，文本情况下数组传入多个内容可以形成回退效果。          |
-| msgInputSpeed          | 文本输入速度         | 数字       | 默认为 150，当内容为文本时，代表键入数组，单位为 ms。 |
-| triggerNextAction | 触发下一段聊天的行为配置 | 对象 | 默认为空，当有内容时会暂停等待用户交互触发下一个聊天内容。 |
-| author | 聊天内容的归属人 | 字符串 | 默认为空，当需要模拟对方有内容输入时，可以填入 “me” |
-
-用户交交互的行为触发 triggerNextAction 配置信息如下所示：
-
-| 配置项                 | 含义                 | 类型               | 备注                                                   |
-| ---------------------- | -------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| type         | 触发行为的类型    | 字符串      |          目前针对不同的内容组件支持两种类型值，userInput/componentClose，具体解释见表格下方所示          |
-| options          | 触发行为的配置 | 对象     |  | 根据类型不同配置表达含义不同，目前只有 userInput 支持 options 配置，具体解释见表格下方所示
-
-> triggerNextAction.type 解释
-> - userInput: 代表等待用户输入指定内容完成一轮交互，支持关键字配置
-> - componentClose: 代表等待用户关闭组件完成一轮交互，常用于信件/VLog等组件，用户点击关闭回到聊天页面触发后续的内容播放
-> 
-
-> triggerNextAction.options 解释，当 triggerNextAction.type = userInput 时，该配置有效
-> - resolveKeyTexts: 类型为数组，触发下一行为的关键词，只需要包含即可，比如 ["好的", "可以", "同意"]，用户只要输入如 "好的呢" 就会触发下一行为
-> - rejectKeyTexts: 类型为数组，触发下一行为的黑名单关键词，只需要包含即可，优先级高，比如 ["不想"]，用户只要输入 "我不想" 就会已经卡在这一聊天内容中
-> - rejectHitTexts: 类型为数组，交互提示内容，当用户输入不满足预期时，给予提示，提示会按照数组顺序进行，提示不够了会强行触发下一个聊天内容
+> .env.* di direktori root proyek chat-want-to-say adalah file konfigurasi lingkungan, yang dikemas dengan konfigurasi .env.production secara default, dan konten konfigurasinya adalah sebagai berikut:
 >
 
-下面对多种形式的内容做一些说明
+| Item konfigurasi | Arti | Keterangan |
+| ---------------------- | -------------------- | ----- -------------------------------------------------- |
+| VITE_APP_TITLE | Judul kotak obrolan | Dapat diisi konten seperti "Mengobrol dengan XXX" |
+| VITE_BASE_URL | Jalur basis halaman web | Jika digunakan di jalur sekunder server, itu harus diisi |
+| VITE_CHAT_OPTIONS_PATH | Konfigurasi konten obrolan (penting) | Isi alamat file json yang sesuai dengan konten, dan temukan file tersebut di direktori publik |
 
-#### 1. 普通文本
+Mengacu pada .env.development file konfigurasi lengkap terlihat seperti ini:
 
-- 如下是一条输入速度为 80ms 的文本内容
-
-```json
-{ "msgs": ["普通消息，有输入动画"], "msgInputSpeed": 80 }
+``` properti
+VITE_APP_TITLE=Mengobrol dengan XXX
+VITE_BASE_URL=obrolan-interaktif-demo/
+VITE_CHAT_OPTIONS_PATH=opsi/demo/chat.json
 ```
 
-- 如下是带有回退效果的文本内容
+### 2. Tingkatkan konten obrolan
 
-```json
+Konfigurasi konten obrolan terdiri dari larik json, setiap item dalam larik sesuai dengan konten obrolan, dan informasi konfigurasi yang didukung adalah sebagai berikut:
+
+| Item konfigurasi | Arti | Jenis | Keterangan |
+| ---------------------- | -------------------- | ----- -------------------------------------------------- | -------------------------------------------------- - ---- |
+| pesan | Konten obrolan | Larik | Mendukung **teks/gambar/huruf/VLog** dan bentuk konten lainnya. Dalam kasus teks, beberapa konten dapat diteruskan ke dalam larik untuk membentuk efek mundur. |
+| msgInputSpeed ​​\u200b\u200b| kecepatan input teks | angka | Standarnya adalah 150, ketika isinya adalah teks, itu mewakili larik input, dan satuannya adalah ms. |
+| triggerNextAction | Konfigurasi perilaku untuk memicu obrolan berikutnya | Objek | Standarnya adalah kosong. Ketika ada konten, itu akan dijeda dan menunggu interaksi pengguna untuk memicu konten obrolan berikutnya. |
+| penulis | Pemilik konten obrolan | String | Standarnya kosong. Saat Anda perlu mensimulasikan bahwa pihak lain memiliki input konten, Anda dapat mengisi "saya" |
+
+Informasi konfigurasi triggerNextAction yang dipicu oleh interaksi pengguna adalah sebagai berikut:
+
+| Item konfigurasi | Arti | Jenis | Keterangan |
+| ---------------------- | -------------------- | ----- -------------------------------------------------- | -------------------------------------------------- - ---- |
+| tipe | Jenis perilaku pemicu | String | Saat ini, dua jenis nilai didukung untuk komponen konten yang berbeda, userInput/componentClose. Silakan lihat tabel di bawah ini untuk penjelasan spesifik |
+| opsi | konfigurasi perilaku pemicu | objek | | konfigurasi memiliki arti yang berbeda tergantung pada jenisnya, saat ini hanya userInput yang mendukung konfigurasi opsi, lihat di bawah tabel untuk penjelasan khusus
+
+> triggerNextAction.type dijelaskan
+> - userInput: mewakili menunggu pengguna memasukkan konten tertentu untuk menyelesaikan putaran interaksi, dan mendukung konfigurasi kata kunci
+> - componentClose: Artinya menunggu pengguna menutup komponen untuk menyelesaikan putaran interaksi. Ini sering digunakan dalam komponen seperti huruf/VLog. Pengguna mengklik tutup untuk kembali ke halaman obrolan guna memicu pemutaran konten selanjutnya
+>
+
+> penjelasan triggerNextAction.options, saat triggerNextAction.type = userInput, konfigurasi valid
+> - resolveKeyTexts: Jenisnya adalah larik, dan kata kunci yang memicu perilaku selanjutnya hanya perlu disertakan, seperti ["OK", "Ya", "Setuju"], selama pengguna memasukkan seperti "OK ", itu akan memicu perilaku selanjutnya
+> - rejectKeyTexts: Jenisnya adalah array, kata kunci daftar hitam yang memicu perilaku berikutnya, hanya perlu disertakan, prioritasnya tinggi, seperti ["Saya tidak mau"], pengguna sudah terjebak dalam ini mengobrol selama dia memasukkan "Saya tidak mau" di konten
+> - rejectHitTexts: Jenisnya adalah array, konten prompt interaktif, ketika input pengguna tidak memenuhi harapan, prompt akan diberikan, prompt akan mengikuti urutan array, jika prompt tidak cukup, konten obrolan berikutnya akan dipicu secara paksa
+>
+
+Berikut adalah beberapa deskripsi dari berbagai bentuk konten
+
+#### 1. Teks biasa
+
+- Berikut ini adalah konten teks dengan kecepatan input 80ms
+
+``` json
+{ "msgs": ["Pesan normal dengan animasi masukan"], "msgInputSpeed": 80 }
+```
+
+- Berikut ini adalah isi teks dengan fallback effect
+
+``` json
 {
-    "msgs": ["普通消息会回退", "普通消息回退后的结果，也能调整动画速度"],
-    "msgInputSpeed": 120
+     "msgs": ["Pesan normal akan dibatalkan", "Hasil dari pengembalian pesan normal juga dapat menyesuaikan kecepatan animasi"],
+     "msgInputSpeed": 120
 }
 ```
 
-- 如下是带有触发效果的文本内容
+- Berikut ini adalah isi teks dengan efek trigger
 
-```json
+``` json
 {
-    "msgs": ["有些心里话，你想听吗？"],
-    "msgInputSpeed": 40,
-    "triggerNextAction": {
-        "type": "userInput",
-        "options": {
-            "resolveKeyTexts": ["好的", "可以", "同意", "愿意", "想", "想听", "是" ],
-            "rejectKeyTexts": ["不想"],
-            "rejectHitTexts": [
-                "不听？信不信我分分钟出 bug 给你看？",
-                "好吧，既然你实在不想听，那我就讲给你听吧～"
-            ]
-        }
-    }
+     "msgs": ["Saya memiliki sesuatu di hati saya, apakah Anda ingin mendengarnya?"],
+     "msgInputSpeed": 40,
+     "triggerNextAction": {
+         "ketik": "Input pengguna",
+         "pilihan": {
+             "resolveKeyTexts": ["OK", "Ya", "Setuju", "Akan", "Ingin", "Ingin mendengar", "Ya" ],
+             "rejectKeyTexts": ["tidak mau"],
+             "rejectHitTexts": [
+                 "Tidak mendengarkan? Percaya atau tidak, saya akan menunjukkan bug setiap menit?",
+                 "Yah, karena kamu benar-benar tidak ingin mendengarnya, aku akan memberitahumu ~"
+             ]
+         }
+     }
 }
 ```
 
-- 如下是自定义文本颜色的内容
+- Berikut ini adalah konten dari warna teks kustom
 
-```json
+``` json
 {
-    "msgs": ["<span style=\"color: red;\">红色的span标签字体</span>"],
-    "msgInputSpeed": 80
+     "msgs": ["<span style=\"color: red;\">font tag rentang merah</span>"],
+     "msgInputSpeed": 80
 }
 ```
 
-#### 2. 图片
+#### 2. Gambar
 
-图片内容示例如下所示，图片文件放到 public 目录下，使用相对路径引用
+Contoh konten gambar ditunjukkan di bawah ini File gambar ditempatkan di direktori publik dan direferensikan menggunakan jalur relatif
 
-```json
-{ "msgs": ["<img src='options/demo/imgs/test.png'/>"] }
+``` json
+{ "pesan": ["<img src='options/demo/imgs/test.png'/>"] }
 ```
 
-#### 3. 信件
+#### 3. Surat
 
-信件内容示例如下所示，信件内容文件放到 public 目录下，使用相对路径引用，当信件被用户关闭时触发下一段聊天内容
+Contoh isi surat ditunjukkan di bawah ini. File isi surat ditempatkan di direktori publik dan direferensikan menggunakan jalur relatif. Saat surat ditutup oleh pengguna, konten obrolan berikutnya dipicu
 
-```json
+``` json
 {
-    "msgs": ["<letter src='options/demo/letters/test.json'/>"],
-    "triggerNextAction": { "type": "componentClose" }
+     "pesan": ["<letter src='options/demo/letters/test.json'/>"],
+     "triggerNextAction": { "type": "componentClose" }
 }
 ```
 
-信件的配置项如下所示：
+Item konfigurasi surat adalah sebagai berikut:
 
-| 配置项                 | 含义                 | 类型               | 备注                                                   |
-| ---------------------- | -------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| openTip  | 信件打开提示     | 字符串      |                    |
-| title     | 信件标题     | 字符串    |  |
-| speed | 文本输入速度 | 数字 | 信件文字的输入速度 |
-| paragraphs | 信件段落信息 | 数组 | 数组每一项为字符串，支持文本/图片，具体解释如下所示 |
+| Item konfigurasi | Arti | Jenis | Keterangan |
+| ---------------------- | -------------------- | ----- -------------------------------------------------- | -------------------------------------------------- - ---- |
+| openTip | tip pembuka pesan | string | |
+| judul | judul pesan | string | |
+| kecepatan | kecepatan input teks | angka | kecepatan input teks huruf |
+| paragraf | informasi paragraf surat | array | setiap item dalam array adalah string, mendukung teks/gambar, penjelasan spesifiknya adalah sebagai berikut |
 
-比如如下的一个信件配置段落含义为，"几场梅雨" 输入完成后停顿 1000ms，然后输入 "几卷荷风".....，段落完成后放置一张图片。
+Misalnya, arti dari paragraf konfigurasi huruf berikut adalah, setelah input "beberapa hujan prem" selesai, jeda selama 1000ms, lalu masukkan "beberapa volume angin teratai"..., dan tempatkan gambar setelah paragraf selesai.
 
-```json
+``` json
 {
-    "openTip": "Lover",
-    "title": "给xx的一封信",
-    "speed": 10,
-    "paragraphs": [
-        "几场梅雨^1000，几卷荷风^1000，江南已是烟水迷离。",
-        "<img src='options/demo/imgs/test.png'/>",
-        "几场梅雨^1000，几卷荷风^1000，江南已是烟水迷离。",
-    ]
+     "openTip": "Kekasih",
+     "title": "Surat untuk xx",
+     "kecepatan": 10,
+     "paragraf": [
+         "Beberapa hujan prem^1000, beberapa volume angin teratai^1000, bagian selatan Sungai Yangtze sudah kabur.",
+         "<img src='options/demo/imgs/test.png'/>",
+         "Beberapa hujan prem^1000, beberapa volume angin teratai^1000, bagian selatan Sungai Yangtze sudah kabur.",
+     ]
 }
 
 ```
 
 #### 4. VLog
 
-VLog内容示例如下所示，视频文件放到 public 目录下，使用相对路径引用，当视频被用户关闭时触发下一段聊天内容
+Contoh konten VLog ditampilkan di bawah. File video ditempatkan di direktori publik dan direferensikan menggunakan jalur relatif. Saat video ditutup oleh pengguna, konten obrolan berikutnya dipicu.
 
-```json
+``` json
 {
-    "msgs": ["<vlog src='options/demo/vlogs/test.mp4'/>"],
-    "triggerNextAction": { "type": "componentClose" }
+     "pesan": ["<vlog src='options/demo/vlogs/test.mp4'/>"],
+     "triggerNextAction": { "type": "componentClose" }
 }
 ```
 
-### 三. 调试&编译出静态网页
-
-#### 1. 调试
-
-```bash
-cd chat-want-to-say
-yarn dev
-# see http://localhost:3000/
-```
-
-#### 2. 编译打包
-
-```bash
-sh bin/build.sh
-cd dist
-# 将 dist 目录的内容部署到静态服务器，通过 anywhere 可以预览效果
-yarn global add anywhere
-anywhere
-```
-
-### 四. 部署至静态服务器
-
-```bash
-scp -r chat-want-to-say/dist/** root@domain:/nginx-html/
-```
+### 3. Debug & kompilasi jaringan statis
