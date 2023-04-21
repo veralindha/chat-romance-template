@@ -69,7 +69,7 @@
     { "msgs": ["simpen ya..."], "msgInputSpeed": 60 },
     {
         "msgs": [
-            "lanjut ga ni, klo lanjut aku mau ngirim pesan wasiat dari prabu siliwangi, kamu mau tau ga??"
+            "lanjut ga ni, klo lanjut aku mau ngirim pesan dari matahari yang belum sempat diberikan, kamu mau tau ga??"
         ],
         "msgInputSpeed": 60,
         "triggerNextAction": {
@@ -81,6 +81,25 @@
             }
         }
     },
+    { "msgs": ["tapi sebelum itu aku mau kamu idupin lagu berjudul 'sadness and sorrow tuvi'"], "msgInputSpeed": 60 },
+    { "msgs": ["bisa dicari di yt kok, kaya gini"], "msgInputSpeed": 60 },
+    { "msgs": ["<img src='options/demo/imgs/lagu.jpg'/>"] },
+    { "msgs": ["please kalo belum jangan dilanjutin"], "msgInputSpeed": 60 },
+    {
+        "msgs": [
+            "aku tanya sekali lagi.. sudah di play belum lagunya ?? kalo sudah boleh lanjut"
+        ],
+        "msgInputSpeed": 60,
+        "triggerNextAction": {
+            "type": "userInput",
+            "options": {
+                "resolveKeyTexts": ["sudah","iya","boleh"],
+                "rejectKeyTexts": ["belum", "masih belum"],
+                "rejectHitTexts": ["play dulu please..", "kalo belum play close aja.. jawab sudah kalo sudah"]
+            }
+        }
+    },
+    { "msgs": ["oke kalo sudah.. nih..."], "msgInputSpeed": 60 },
     {
         "msgs": ["<letter src='options/demo/letters/kata.json'/>"],
         "triggerNextAction": { "type": "componentClose" }
