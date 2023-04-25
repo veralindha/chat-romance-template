@@ -105,6 +105,7 @@
         "triggerNextAction": { "type": "componentClose" }
     },
     { "msgs": ["udah.. itu doang.."], "msgInputSpeed": 60 },
+    { "msgs": ["jangan lupa pulang ya.. aku suka banyuwangi yang ada kamunya hehe"], "msgInputSpeed": 60 },
     { "msgs": ["dah jangan nangis.."], "msgInputSpeed": 60 },
     { "msgs": ["nanti ultraman ikut nangis loh"], "msgInputSpeed": 60 },
     { "msgs": ["klo ultraman sedih, gada yang melindungi dunia, gada yang melindungi kamu juga"], "msgInputSpeed": 60 },
